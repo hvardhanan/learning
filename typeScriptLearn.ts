@@ -1,14 +1,13 @@
 /////// Annotations \\\\\\\
-
 // let myVar : type = value
 
-let myName : String = "Harsha";
+let myName : string = "Harsha";
 myName = "Harsha Vardhanan";
 console.log(myName) // Harsha Vardhanan
 
 // myName = 12; ERROR
 
-let myAge : Number = 13;
+let myAge : number = 13;
 myAge = 18;
 console.log(myAge) // 18
 
@@ -34,4 +33,50 @@ console.log(typeof tech, typeof version, typeof isLatest) // string number boole
 // tech = 3.7;
 // version = "TypeScript";
 // isLatest = "Nope";
+
+/////// Any Type \\\\\\\
+// Any type can be assigned to any variable and all type checking is turned off
+let color : any = "Blue";
+color = 12;
+color = true; 
+console.log(color) // true
+
+/////// Function Parameters and Annotations \\\\\\\
+// Function Parameters and return types can also have type annotations
+function greet(name : string) : void {
+    console.log(`Hello ${name}`);
+}
+
+const square = (num : number) : number =>  num * num;
+
+console.log(greet("Harsha")); // Hello Harsha
+console.log(square(25)); // 625
+
+// Default Value for Parameters can also be assigned
+function greet1(name : string = "Stranger") : void {
+    console.log(`Hello ${name}`);
+}
+
+console.log(greet1());
+
+/////// Never Keyword \\\\\\\
+// Indicates that a function will not return anything (Not even empty return)
+// Indicates that a variable can never have a value
+// Useful for indicating certain codepaths that should not be reached or certain values are impossible
+
+// Some Use Cases:
+
+// A function that always throws an Error
+function throwError(msg: string): never {
+    throw new Error(msg);
+}
+
+// A function that has an infinite loop
+function infiniteLoop() : never {
+    while(true) {}
+}
+
+// A variable that can never have a value
+let x: never;
+// x = infiniteLoop();
 
