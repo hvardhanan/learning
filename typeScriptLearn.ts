@@ -34,12 +34,14 @@ console.log(typeof tech, typeof version, typeof isLatest); // string number bool
 // version = "TypeScript";
 // isLatest = "Nope";
 
+
 /////// Any Type \\\\\\\
 // Any type can be assigned to any variable and all type checking is turned off
 let color : any = "Blue";
 color = 12;
 color = true; 
 console.log(color); // true
+
 
 /////// Function Parameters and Annotations \\\\\\\
 // Function Parameters and return types can also have type annotations
@@ -58,6 +60,7 @@ function greet1(name : string = "Stranger") : void {
 };
 
 console.log(greet1());
+
 
 /////// Never Keyword \\\\\\\
 // Indicates that a function will not return anything (Not even empty return)
@@ -80,6 +83,7 @@ function infiniteLoop() : never {
 let x: never;
 // x = infiniteLoop();
 
+
 ////// Arrays Types \\\\\\
 // Arrays are typed in TS. Specify the type of values that an array can hold.
 // Use either Array[type] or generic Array<type> syntax to specify the type of values in an array
@@ -96,6 +100,7 @@ const threeDimArr: number[][][] = [[[1, 2], [3, 4]], [[5, 6], [7, 8]]];
 
 console.log(twoDimArr); // [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
 console.log(threeDimArr); // [ [ [ 1, 2 ], [ 3, 4 ] ], [ [ 5, 6 ], [ 7, 8 ] ] ]
+
 
 ////// Objects \\\\\\
 // Structured data type that can hold multiple values as key-value pairs
@@ -212,3 +217,23 @@ isTrue = true;
 let myNum: 1 | 10 | 100;
 myNum = 1;
 // myNum = 2; ERROR
+
+
+////// Tuples \\\\\\
+// Represents an array with fixed number of elements
+// Each element can have a different type
+// Order of types in the tuple definition corresponds to the order of the values in the actual array.
+let myTuple: [string, number] = ["hello", 105];
+console.log(myTuple[0], myTuple[1]); // hello 105
+
+// Destructuring tuples
+let [firstElement, secondElement] = myTuple;
+console.log(firstElement, secondElement) // hello 105
+
+
+////// Enums \\\\\\
+// Set of named constants
+enum weatherConditions { Sunny = "sunny", Cloudy = "cloudy", Rainy = "rainy", Snowy = "snowy" };
+
+const currentWeather = weatherConditions.Cloudy;
+console.log(`The current weather condition is ${currentWeather}`); // The current weather condition is cloudy
