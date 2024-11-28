@@ -165,3 +165,50 @@ const sub1 : Subscriber = {
 };
 
 // sub1.location = "NY"; ERROR
+
+
+////// Intersection Types \\\\\\
+// Combine multiple types into a single type that includes all the properties and methods of constituent type
+// Denoted by the & symbol
+type AccountDetails = {
+    email: string,
+    password: string
+};
+
+type Client = User & AccountDetails;
+
+const client1 : Client = {
+    name: "Harsha",
+    age: 18,
+    email: "mail@hvardhanan.tech",
+    password: "1234567890"
+};
+
+console.log(client1);
+
+
+////// Unions \\\\\\
+// Allows a variable or parameter to accept multiple types
+// Defined using the pipe symbol (|)
+let myVar: number | string;
+
+const foo = (params: string | string[]) => {};
+
+interface MyInterface { myProps: string | string[] };
+
+const myItems: (number | string)[] = [1, 2, 'Three'];
+
+
+////// Literal types \\\\\\
+// A variable can only have one specific value and no other
+let myColor: "red" | "blue" | "orange" | "purple";
+myColor = "purple";
+// myColor = "yellow"; ERROR
+
+let isTrue: true;
+isTrue = true;
+// isTrue = false; ERROR
+
+let myNum: 1 | 10 | 100;
+myNum = 1;
+// myNum = 2; ERROR
