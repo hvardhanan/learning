@@ -3,19 +3,19 @@
 
 let myName : string = "Harsha";
 myName = "Harsha Vardhanan";
-console.log(myName) // Harsha Vardhanan
+console.log(myName); // Harsha Vardhanan
 
 // myName = 12; ERROR
 
 let myAge : number = 13;
 myAge = 18;
-console.log(myAge) // 18
+console.log(myAge); // 18
 
 // myAge = "13"; ERROR
 
 let isStudent : Boolean = true;
 isStudent = false;
-console.log(isStudent) // false
+console.log(isStudent); // false
 
 // isStudent = 1; ERROR
 
@@ -26,8 +26,8 @@ let tech = "TypeScript";
 let version = 3.7;
 let isLatest = true;
 
-console.log(tech, version, isLatest) // TypeScript 3.7 true
-console.log(typeof tech, typeof version, typeof isLatest) // string number boolean
+console.log(tech, version, isLatest); // TypeScript 3.7 true
+console.log(typeof tech, typeof version, typeof isLatest); // string number boolean
 
 // Error
 // tech = 3.7;
@@ -39,13 +39,13 @@ console.log(typeof tech, typeof version, typeof isLatest) // string number boole
 let color : any = "Blue";
 color = 12;
 color = true; 
-console.log(color) // true
+console.log(color); // true
 
 /////// Function Parameters and Annotations \\\\\\\
 // Function Parameters and return types can also have type annotations
 function greet(name : string) : void {
     console.log(`Hello ${name}`);
-}
+};
 
 const square = (num : number) : number =>  num * num;
 
@@ -55,7 +55,7 @@ console.log(square(25)); // 625
 // Default Value for Parameters can also be assigned
 function greet1(name : string = "Stranger") : void {
     console.log(`Hello ${name}`);
-}
+};
 
 console.log(greet1());
 
@@ -69,14 +69,99 @@ console.log(greet1());
 // A function that always throws an Error
 function throwError(msg: string): never {
     throw new Error(msg);
-}
+};
 
 // A function that has an infinite loop
 function infiniteLoop() : never {
     while(true) {}
-}
+};
 
 // A variable that can never have a value
 let x: never;
 // x = infiniteLoop();
 
+////// Arrays Types \\\\\\
+// Arrays are typed in TS. Specify the type of values that an array can hold.
+// Use either Array[type] or generic Array<type> syntax to specify the type of values in an array
+const numbers : number[] = [1, 2, 3, 4, 5];
+const names : Array<string> = ["Harsha", "Vardhanan", "Sri"];
+
+console.log(numbers, names); // [ 1, 2, 3, 4, 5 ] [ 'Harsha', 'Vardhanan', 'Sri' ]
+names.push("Izaki");
+console.log(names); // [ 'Harsha', 'Vardhanan', 'Sri', 'Izaki' ]
+// names.push(10); ERROR
+
+const twoDimArr: number[][] = [[1, 2], [3, 4], [5, 6]];
+const threeDimArr: number[][][] = [[[1, 2], [3, 4]], [[5, 6], [7, 8]]];
+
+console.log(twoDimArr); // [ [ 1, 2 ], [ 3, 4 ], [ 5, 6 ] ]
+console.log(threeDimArr); // [ [ [ 1, 2 ], [ 3, 4 ] ], [ [ 5, 6 ], [ 7, 8 ] ] ]
+
+////// Objects \\\\\\
+// Structured data type that can hold multiple values as key-value pairs
+// type varName (annotations/types) : { property: value }
+const person: {firstName: string, lastName: string, age: number} = {
+    firstName: "Harsha",
+    lastName: "Vardhanan",
+    age: 18
+};
+
+// Objects as function return value
+function printUser(): {name: string, age: number, location: string} {
+    return {
+        name: "Harsha",
+        age: 18,
+        location: "Chennai"
+    }
+};
+
+
+////// Type Aliases \\\\\\
+// To create a new name for an existing type
+// Define custom type that refers to another type and give it a more meaningful name
+// Defined using the "type" keyword
+type Person = {
+    name: string,
+    age: number
+};
+
+function printPerson(person: Person) {
+    console.log(`Name: ${person.name}, Age: ${person.age}`);
+};
+
+const person1: Person = {
+    name: "Smith",
+    age: 20
+};
+printPerson(person1);
+
+
+////// Optional Properties \\\\\\
+// Certain properties can be made optional in object type
+// TO make a property optional add a question mark (?) after the property name
+type User = {
+    name: string,
+    age: number,
+    email?: string,
+    phone?: string
+};
+
+const user1 : User = { name: "Alan", age: 18 };
+const user2 : User = { name: "Antony", age: 19, email:"antony@email.com" };
+
+
+////// readonly property \\\\\\
+// Value of the property cannot be changed after declaration
+type Subscriber = {
+    name: string,
+    age: number,
+    readonly location: string
+};
+
+const sub1 : Subscriber = {
+    name: "Person1",
+    age: 25,
+    location: "IN"
+};
+
+// sub1.location = "NY"; ERROR
