@@ -289,3 +289,67 @@ interface Car {
     stop(): void;
 };
 
+
+////// Generics \\\\\\
+// To create reusable components that can work with a varietu of types
+// Allow to define the type of properties, methods and arguments at a later time
+// Denoted by angle brackets <>
+function identity<T>(arg: T): T {
+    return arg;
+};
+
+let output = identity<string>("Hello");
+let output1 = identity<number>(100);
+console.log(output, output1); // Hello
+
+class Box<T> {
+    private _contents: T;
+
+    constructor(contents: T) {
+        this._contents = contents;
+    }
+
+    get contents(): T {
+        return this._contents;
+    }
+
+    set contents(value: T) {
+        this._contents = value;
+    }
+
+    public describe(): string {
+        return `This box contains: ${this._contents}`;
+    }
+}
+
+let stringBox = new Box<string>("Hello, World!");
+console.log(stringBox.describe()); // This box contains: Hello, World!
+
+let numberBox = new Box<number>(42);
+console.log(numberBox.describe()); // This box contains: 42
+
+////// Type Narrowing \\\\\\
+// Narrow down the type of a variable within a block of code
+// Use type guards to narrow down the type of a variable
+let myValue: string | number;
+myValue = "Hello";
+
+if (typeof myValue === "string") {
+    console.log(myValue.toUpperCase());
+} else {
+    console.log("Not String");
+}
+
+function isString(value: any): value is string {
+    return typeof value === "string";
+}
+
+function isNumber(value: any): value is number {
+    return typeof value === "number";
+}
+
+if (isString(myValue)) {
+    console.log(myValue.toUpperCase());
+} else if (isNumber(myValue)) {
+    console.log("It is a number");
+}
