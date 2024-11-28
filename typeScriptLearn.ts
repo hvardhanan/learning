@@ -237,3 +237,55 @@ enum weatherConditions { Sunny = "sunny", Cloudy = "cloudy", Rainy = "rainy", Sn
 
 const currentWeather = weatherConditions.Cloudy;
 console.log(`The current weather condition is ${currentWeather}`); // The current weather condition is cloudy
+
+
+////// Interface \\\\\\
+// Define a contract for the shape of an object.
+// Specifies the proprties and their types that an object must have.
+interface Animal {
+    species: string;
+    name: string;
+    age: number;
+};
+const dog: Animal = { species: "Canis Lupus", name: "Retriever", age: 5 }
+
+// Interface for a function
+interface MathOperation {
+    (x: number, y: number): number;
+};
+const add: MathOperation = (a, b) => a + b;
+const sub: MathOperation = (a, b) => a - b;
+
+// Interface for a class
+interface Vehicle {
+    model?: string;
+    year?: string;
+    color?: string,
+    startEngine(): void;
+    honk(): void;
+    stopEngine(): void;
+};
+const mercedes: Vehicle =  {
+    model: "G Class",
+    year: "2020",    
+    startEngine: () => {
+        console.log("Engine Started");       
+    },
+    honk: () => {
+        console.log("Honk Honk....");       
+    },
+    stopEngine: () => {
+        console.log("Engine Halted");       
+    }
+};
+
+// Interface Extension
+interface Car {
+    brand: string;
+    start(): void;
+};
+interface Car {
+    model: string;
+    stop(): void;
+};
+
